@@ -74,6 +74,22 @@ func (dc *DiscordClient) MessageHandler(ss *discordgo.Session, msg *discordgo.Me
 				// ! BREAK
 				dc.Back(args, msg)
 				return
+			} else if utils.CompareUpperString(args[0], enum.PrefixCommand(enum.HELP)) {
+				// ! BREAK
+				help := ` `
+				help += "\n"
+				help += "available commands\n"
+				help += "(time(24hour) = HH:MM like 09:00  12:30)\n"
+				help += "`!in <wfh/wfo>` with current time\n"
+				help += "`!in <wfh/wfo> <time>` with specific time\n"
+				help += "`!out` with current time\n"
+				help += "`!out <time>` with specific time\n"
+				help += "`!break` with current time\n"
+				help += "`!break <time>` with specific time\n"
+				help += "`!back` with current time\n"
+				help += "`!back <time>` with specific time\n"
+				ss.ChannelMessageSend(msg.ChannelID, msg.Author.Mention()+help)
+				return
 			}
 
 		} else {

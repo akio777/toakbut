@@ -33,7 +33,7 @@ func (a *Breaks) Update(newData *model.Breaks) (*model.Breaks, error) {
 	}
 	if latest.BreakOut == nil {
 		latest.BreakOut = newData.BreakOut
-		if latest.BreakOut.Before(*newData.BreakOut) {
+		if latest.BreakOut.Before(*latest.BreakIn) {
 			return nil, errors.New("break `back` should not less than `break` ")
 		}
 		txFunc := func(context context.Context, tx bun.Tx) error {

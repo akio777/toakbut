@@ -1,0 +1,28 @@
+version: '3'
+services:
+  toakbut-db:
+      build:
+        context: .
+        dockerfile: ./db.Dockerfile
+      command: ["postgres", "-c", "max_connections=2048", "-c", "shared_buffers=1GB"]
+      restart: unless-stopped
+      env_file:
+        - ./cmd/toakbut/.env
+      volumes:
+        - ./migrations/:/docker-entrypoint-initdb.d/
+        - toakbut-db-data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: toakbut
+      ports:
+        - "35437:5432"
+      networks:
+        - toakbut-network
+
+networks:
+  toakbut-network:
+    external: false
+
+volumes:
+  toakbut-db-data:

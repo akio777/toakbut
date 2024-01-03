@@ -19,3 +19,8 @@ API_TOKEN=
 API_CHANNEL_ID=
 
 ```
+
+### invite url
+```
+https://discordapp.com/api/oauth2/authorize?client_id=<clientID>&permissions=3072&scope=bot
+```

@@ -32,5 +32,5 @@ func (dc *DiscordClient) Back(args []string, msg *discordgo.MessageCreate) {
 		dc.Log.Error(err)
 		return
 	}
-	ss.ChannelMessageSend(msg.ChannelID, msg.Author.Mention()+fmt.Sprintf(" break in at : %s", utils.TimeFormat(backTime.Local())))
+	ss.ChannelMessageSend(msg.ChannelID, msg.Author.Mention()+fmt.Sprintf(" back in at : %s", utils.TimeFormat(backTime.Local())))
 }

@@ -19,6 +19,21 @@ services:
         - "35437:5432"
       networks:
         - toakbut-network
+  toakbut:
+      build:
+        context: .
+        dockerfile: ./toakbut.Dockerfile
+      restart: always
+      depends_on:
+        - toakbut-db
+      env_file:
+        - ./cmd/toakbut/.env
+      environment:
+        - API_DB_HOST=host.docker.internal
+      ports:
+        - "3007:3007"
+      networks:
+        - toakbut-network
 
 networks:
   toakbut-network:

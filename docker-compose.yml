@@ -19,6 +19,9 @@ services:
         - "35437:5432"
       networks:
         - toakbut-network
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+        
   toakbut:
       build:
         context: .
@@ -34,6 +37,8 @@ services:
         - "3007:3007"
       networks:
         - toakbut-network
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
 
 networks:
   toakbut-network:

@@ -1,5 +1,6 @@
 FROM postgres:15.2
 
+RUN apt-get update && apt-get install -y tzdata
 ENV TZ=Asia/Bangkok
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
